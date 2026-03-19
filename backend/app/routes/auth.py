@@ -8,8 +8,8 @@ from bson import ObjectId
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register', methods=['POST'])
-def register():
+@auth_bp.route('/signup', methods=['POST'])
+def signup():
     # from app import db
     data = request.get_json()
     email = data.get('email')

@@ -12,7 +12,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/auth/register', { name, email, password });
+      await api.post('/auth/signup', { name, email, password });
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.error || 'Signup failed');
