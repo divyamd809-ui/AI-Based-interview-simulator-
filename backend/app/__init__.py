@@ -33,4 +33,17 @@ def create_app():
     def health_check():
         return jsonify({"status": "healthy"}), 200
 
+    from flask import request
+    import logging
+
+    logging.basicConfig(level=logging.INFO)
+
+    @app.before_request
+    def log_request_info():
+        app.logger.info(f"Incoming Request: {request.method} {request.path}")
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return jsonify({"error": "Resource not found", "path": request.path}), 404
+
     return app
