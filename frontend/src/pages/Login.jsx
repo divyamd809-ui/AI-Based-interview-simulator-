@@ -36,7 +36,7 @@ function Login() {
       <div className="absolute top-1/4 left-1/4 -z-10 h-64 w-64 rounded-full bg-purple-600 blur-[120px] opacity-40 mix-blend-screen animate-pulse duration-1000"></div>
       <div className="absolute bottom-1/4 right-1/4 -z-10 h-64 w-64 rounded-full bg-indigo-500 blur-[120px] opacity-30 mix-blend-screen animate-pulse duration-700 delay-300"></div>
 
-      <div className="w-full max-w-md space-y-8 glass-panel-dark p-10 rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-indigo-500/10">
+      <div className="w-full max-w-md space-y-8 glass-panel-dark p-6 sm:p-10 rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-indigo-500/10">
         
         {/* Shine effect */}
         <div className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-5 animate-[shimmer_3s_infinite]"></div>

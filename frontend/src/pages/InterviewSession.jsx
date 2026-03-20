@@ -284,10 +284,10 @@ function InterviewSession() {
         </div>
       )}
       
-      <div className="flex flex-1 overflow-hidden relative transition-opacity duration-500" style={{ opacity: isEvaluating ? 0.3 : 1, pointerEvents: isEvaluating ? 'none' : 'auto' }}>
+      <div className="flex flex-col md:flex-row flex-1 overflow-hidden relative transition-opacity duration-500" style={{ opacity: isEvaluating ? 0.3 : 1, pointerEvents: isEvaluating ? 'none' : 'auto' }}>
         
         {/* Left panel: Chat and Problem */}
-        <div className="w-1/3 border-r border-slate-800 flex flex-col bg-slate-900 relative">
+        <div className="w-full md:w-1/3 h-1/2 md:h-full border-b md:border-b-0 md:border-r border-slate-800 flex flex-col bg-slate-900 relative">
           
           {/* Subtle gradient behind chat */}
           <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/10 to-transparent pointer-events-none"></div>
@@ -364,7 +364,7 @@ function InterviewSession() {
         </div>
         
         {/* Right panel: Code Editor and Terminal */}
-        <div className="w-2/3 flex flex-col bg-[#0A0E17]">
+        <div className="w-full md:w-2/3 h-1/2 md:h-full flex flex-col bg-[#0A0E17]">
           {/* Editor Toolbar */}
           <div className="bg-slate-900 border-b border-slate-800 flex justify-between items-center py-3 px-5 shadow-sm">
              <div className="flex items-center space-x-4">
@@ -384,7 +384,7 @@ function InterviewSession() {
                </div>
                <span className="text-xs font-mono font-bold text-slate-500 uppercase tracking-widest border-l border-slate-700 pl-4">solution_code</span>
              </div>
-             <div className="flex space-x-3">
+             <div className="flex space-x-2 sm:space-x-3">
                <button 
                   onClick={handleRunCode}
                   disabled={isExecuting}
@@ -395,10 +395,10 @@ function InterviewSession() {
                </button>
                <button 
                   onClick={handleEndInterview}
-                  className="px-5 py-2 bg-rose-500/10 hover:bg-rose-500 border border-rose-500/50 hover:border-transparent text-rose-400 hover:text-white text-sm rounded-lg flex items-center font-bold tracking-wide transition-all shadow-[0_0_10px_rgba(244,63,94,0.1)] hover:shadow-[0_0_15px_rgba(244,63,94,0.4)]"
+                  className="px-3 sm:px-5 py-2 bg-rose-500/10 hover:bg-rose-500 border border-rose-500/50 hover:border-transparent text-rose-400 hover:text-white text-sm rounded-lg flex items-center font-bold tracking-wide transition-all shadow-[0_0_10px_rgba(244,63,94,0.1)] hover:shadow-[0_0_15px_rgba(244,63,94,0.4)]"
                >
-                 <StopCircle size={14} className="mr-2" /> 
-                 SUBMIT
+                 <StopCircle size={14} className="mr-0 sm:mr-2" /> 
+                 <span className="hidden sm:inline">SUBMIT</span>
                </button>
              </div>
           </div>

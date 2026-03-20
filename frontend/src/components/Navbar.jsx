@@ -33,7 +33,7 @@ function Navbar() {
           </div>
           
           {/* Navigation Links */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-2 sm:space-x-6">
             {token ? (
               <>
                 <Link to="/dashboard" className="text-slate-300 hover:text-white font-medium text-sm transition-colors">
