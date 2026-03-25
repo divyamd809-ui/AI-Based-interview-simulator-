@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import { BookOpen, Database, CPU, Layout, Clock, Play } from 'lucide-react';
+import { BookOpen, Database, Cpu, Layout, Clock, Play } from 'lucide-react';
 
 const TOPICS = [
   { id: 'DSA', name: 'Data Structures & Algorithms', icon: BookOpen, color: 'from-blue-500 to-cyan-400' },
   { id: 'DBMS', name: 'Database Management', icon: Database, color: 'from-fuchsia-500 to-pink-500' },
-  { id: 'OS', name: 'Operating Systems', icon: CPU, color: 'from-emerald-400 to-teal-500' },
+  { id: 'OS', name: 'Operating Systems', icon: Cpu, color: 'from-emerald-400 to-teal-500' },
   { id: 'System Design', name: 'System Design', icon: Layout, color: 'from-orange-400 to-rose-400' },
 ];
 
