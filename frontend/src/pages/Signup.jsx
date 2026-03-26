@@ -16,11 +16,11 @@ function Signup() {
     setIsLoading(true);
     setError('');
     try {
-      // Using /auth/register to match backend or current convention
-      await api.post('/auth/register', { name, email, password });
+      // Using /auth/signup to match backend route
+      await api.post('/auth/signup', { name, email, password });
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed');
+      setError(err.response?.data?.error || 'Signup failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
