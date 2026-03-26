@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Mail, Lock, User, UserPlus, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 import api from '../services/api';
 
 function Signup() {
@@ -15,104 +16,124 @@ function Signup() {
     setIsLoading(true);
     setError('');
     try {
-      await api.post('/auth/signup', { name, email, password });
+      // Using /auth/register to match backend or current convention
+      await api.post('/auth/register', { name, email, password });
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed');
+      setError(err.response?.data?.error || 'Registration failed');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center p-4">
+    <div className="flex min-h-[calc(100vh-4rem)] relative overflow-hidden bg-slate-950">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950 to-slate-950"></div>
       
-      {/* Background gradients */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900 via-slate-900 to-black"></div>
-      
-      {/* Floating decorative blobs */}
-      <div className="absolute top-1/3 right-1/3 -z-10 h-80 w-80 rounded-full bg-fuchsia-600 blur-[120px] opacity-30 mix-blend-screen animate-pulse duration-1000"></div>
-      <div className="absolute bottom-1/4 left-1/4 -z-10 h-64 w-64 rounded-full bg-blue-500 blur-[100px] opacity-20 mix-blend-screen animate-pulse duration-700 delay-500"></div>
+      <div className="absolute top-1/4 -left-20 -z-10 h-96 w-96 rounded-full bg-indigo-500/10 blur-[100px] animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-20 -z-10 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px] animate-pulse delay-700"></div>
 
-      <div className="w-full max-w-md space-y-8 glass-panel-dark p-6 sm:p-10 rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-fuchsia-500/10">
-        
-        {/* Shine effect */}
-        <div className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-5 animate-[shimmer_3s_infinite]"></div>
-
-        <div className="relative z-10">
-          <h2 className="text-center text-4xl font-extrabold tracking-tight text-white mb-2">
-            Join Platform
-          </h2>
-          <p className="text-center text-sm text-indigo-200/70 mb-8">
-            Create an account to master your next interview
-          </p>
-        </div>
-
-        <form className="relative z-10 space-y-6" onSubmit={handleSignup}>
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/50 text-red-200 text-sm text-center py-3 px-4 rounded-xl backdrop-blur-sm animate-in fade-in zoom-in duration-200">
-              {error}
-            </div>
-          )}
+      <div className="flex flex-col justify-center w-full px-4 sm:px-6 lg:px-8 py-12">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden p-8 sm:p-10 relative group">
           
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1 ml-1" htmlFor="name">Full Name</label>
-              <input
-                id="name"
-                type="text"
-                required
-                className="block w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-400 transition-all focus:border-fuchsia-500 focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50"
-                placeholder="Jane Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          
+          <div className="mb-8 text-center">
+            <div className="mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 mb-6">
+              <ShieldCheck className="text-white w-7 h-7" />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1 ml-1" htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="email"
-                required
-                className="block w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-400 transition-all focus:border-fuchsia-500 focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1 ml-1" htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                required
-                className="block w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-400 transition-all focus:border-fuchsia-500 focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">Create Account</h2>
+            <p className="text-slate-400">Join a community of top-tier developers</p>
           </div>
 
-          <div>
+          <form className="space-y-5" onSubmit={handleSignup}>
+            {error && (
+              <div className="bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm p-4 rounded-xl flex items-start animate-fade-in">
+                <AlertCircle className="w-5 h-5 mr-3 flex-shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1" htmlFor="name">Full Name</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                    <User size={18} />
+                  </div>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    className="input-field pl-11"
+                    placeholder="Jane Doe"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1" htmlFor="email">Email address</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                    <Mail size={18} />
+                  </div>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    className="input-field pl-11"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1" htmlFor="password">Password</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                    <Lock size={18} />
+                  </div>
+                  <input
+                    id="password"
+                    type="password"
+                    required
+                    className="input-field pl-11"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative flex w-full justify-center overflow-hidden rounded-xl bg-gradient-to-r from-fuchsia-500 to-indigo-600 px-4 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(217,70,239,0.4)] focus:outline-none active:scale-95 disabled:opacity-70 disabled:hover:scale-100"
+              className="btn-primary w-full py-3.5 flex items-center justify-center group"
             >
-              {isLoading ? 'Creating Account...' : 'Sign Up'}
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+              ) : (
+                <UserPlus className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+              )}
+              {isLoading ? 'Creating account...' : 'Sign Up'}
             </button>
-          </div>
-          
-          <div className="text-center text-sm">
-            <Link to="/login" className="font-medium text-fuchsia-400 transition-colors hover:text-fuchsia-300 flex items-center justify-center group">
-              Already have an account? <span className="ml-1 group-hover:underline">Sign in</span>
-              <svg className="ml-1 h-4 w-4 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </form>
+            
+            <div className="text-center">
+              <p className="text-slate-400 text-sm">
+                Already have an account?{' '}
+                <Link to="/login" className="text-indigo-400 font-semibold hover:text-indigo-300 transition-colors inline-flex items-center group">
+                  Sign in <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
