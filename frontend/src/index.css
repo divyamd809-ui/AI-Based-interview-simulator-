@@ -10,37 +10,39 @@
 }
 
 @layer components {
-  .glass-card {
+  .glass-panel-dark {
     @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.82);
   }
   
+  .glass-panel-light {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
   .glass-card-hover {
     @apply hover:bg-slate-800/60 transition-all duration-300 hover:border-white/20 hover:shadow-indigo-500/10;
   }
 
   .btn-primary {
-    @apply px-6 py-2.5 rounded-full font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 shadow-lg shadow-indigo-500/20 active:scale-95 transition-all duration-200;
+    @apply relative overflow-hidden px-6 py-2.5 rounded-full font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 shadow-lg shadow-indigo-500/20 active:scale-95 transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply px-6 py-2.5 rounded-full font-semibold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 active:scale-95 transition-all duration-200;
+    @apply px-6 py-2.5 rounded-full font-semibold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 active:scale-95 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply block w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-400 transition-all focus:border-indigo-500 focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50;
   }
 }
 
 @layer utilities {
-  .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite linear;
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-indigo-100 to-slate-400;
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400;
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400;
   }
 }
 
