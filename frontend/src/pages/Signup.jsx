@@ -20,7 +20,11 @@ function Signup() {
       await api.post('/auth/signup', { name, email, password });
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed. Please try again.');
+      if (err.code === 'ERR_NETWORK') {
+        setError('Cannot connect to the server. Please ensure the backend is running.');
+      } else {
+        setError(err.response?.data?.error || err.response?.data?.message || err.message || 'Signup failed. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }

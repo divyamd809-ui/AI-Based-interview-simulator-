@@ -20,7 +20,11 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed');
+      if (err.code === 'ERR_NETWORK') {
+        setError('Cannot connect to the server. Please ensure the backend is running.');
+      } else {
+        setError(err.response?.data?.error || err.response?.data?.message || err.message || 'Login failed. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
